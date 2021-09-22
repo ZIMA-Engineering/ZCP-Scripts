@@ -22,6 +22,7 @@ DRY_RUN="--dry-run"
 
 lftp $DRY_RUN -c "set ftp:list-options -a;
 set cmd:fail-exit yes;
+set ssl:verify-certificate false;
 open '$FTP_URL';
 lcd $LCD;
 mkdir -p $RCD;
