@@ -8,7 +8,7 @@ backupname=
 backupath=
 
 for i in {1..9999} ; do
-	backupname="${datename}-$(printf %04d $i)"
+	backupname="${datename}-$(printf %02d $i)"
 	backuppath=$backupdir/$backupname
 	[ -d "$backuppath" ] && continue
 	break
