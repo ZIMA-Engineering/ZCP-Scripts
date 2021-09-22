@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Remove all metadata from directory tree
 echo "Clear directory $(realpath --relative-to=$ZCP_DATASOURCE_ROOT $(pwd))"
 read -p "Continue? [y/N]" cont

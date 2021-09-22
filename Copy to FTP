@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Copy the current directory to the FTP server
 
 FTP_HOST=

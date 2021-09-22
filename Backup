@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Create a backup of the current directory and store it in
 # ./0000-index/backup
 
