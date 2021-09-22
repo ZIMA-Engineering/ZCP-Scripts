@@ -1,0 +1,34 @@
+#!/bin/sh
+# Copy the current directory to the FTP server
+
+FTP_HOST=
+FTP_USER=
+FTP_PASS=
+
+FTP_CONFIG="$ZCP_DATASOURCE_ROOT"/0000-index/ftp-server.conf
+
+if [ ! -f "$FTP_CONFIG" ] ; then
+	echo "Config file not found at $FTP_CONFIG"
+	exit 1
+fi
+
+. "$FTP_CONFIG"
+
+FTP_URL="ftp://$FP_USER:$FTP_PASS@$FTP_HOST"
+LCD="."
+RCD="$(realpath --relative-to=$ZCP_DATASOURCE_ROOT $ZCP_DIRECTORY)"
+DRY_RUN="--dry-run"
+#DELETE="--delete"
+
+lftp $DRY_RUN -c "set ftp:list-options -a;
+set cmd:fail-exit yes;
+open '$FTP_URL';
+lcd $LCD;
+mkdir -p $RCD;
+cd $RCD;
+mirror --reverse \
+       $DELETE \
+       --verbose"
+echo
+echo Done
+read

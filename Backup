@@ -1,0 +1,31 @@
+#!/bin/sh
+# Create a backup of the current directory and store it in
+# ./0000-index/backup
+
+datename=$(date +%Y-%m-%d)
+backupdir=0000-index/backup
+backupname=
+backupath=
+
+for i in {1..9999} ; do
+	backupname="${datename}-$(printf %04d $i)"
+	backuppath=$backupdir/$backupname
+	[ -d "$backuppath" ] && continue
+	break
+done
+
+if [ "$backuppath" == "" ] ; then
+	echo "Unknown error"
+	exit 1
+fi
+
+if [ -d "$backuppath" ] ; then
+	echo "No more backups today"
+	exit 1
+fi
+
+echo "Saving backup into $backuppath"
+mkdir -p "$backuppath"
+rsync -av --exclude 0000-index/backup ./ "$backuppath"/
+echo "Done backing up to $backuppath"
+read
