@@ -4,6 +4,7 @@
 FTP_HOST=
 FTP_USER=
 FTP_PASS=
+FTP_ROOT=/
 
 FTP_CONFIG="$ZCP_DATASOURCE_ROOT"/0000-index/ftp-server.conf
 
@@ -16,7 +17,7 @@ fi
 
 FTP_URL="ftp://$FP_USER:$FTP_PASS@$FTP_HOST"
 LCD="."
-RCD="$(realpath --relative-to=$ZCP_DATASOURCE_ROOT $ZCP_DIRECTORY)"
+RCD="$FTP_ROOT/$(realpath --relative-to=$ZCP_DATASOURCE_ROOT $ZCP_DIRECTORY)"
 DRY_RUN="--dry-run"
 #DELETE="--delete"
 
