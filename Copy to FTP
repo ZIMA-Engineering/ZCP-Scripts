@@ -15,16 +15,16 @@ fi
 
 . "$FTP_CONFIG"
 
-FTP_URL="ftp://$FP_USER:$FTP_PASS@$FTP_HOST"
 LCD="."
 RCD="$FTP_ROOT/$(realpath --relative-to=$ZCP_DATASOURCE_ROOT $ZCP_DIRECTORY)"
 DRY_RUN="--dry-run"
 #DELETE="--delete"
 
-lftp $DRY_RUN -c "set ftp:list-options -a;
+lftp -c "set ftp:list-options -a;
 set cmd:fail-exit yes;
 set ssl:verify-certificate false;
-open '$FTP_URL';
+open '$FTP_HOST';
+login $FTP_USER $FTP_PASS;
 lcd $LCD;
 mkdir -p $RCD;
 cd $RCD;
