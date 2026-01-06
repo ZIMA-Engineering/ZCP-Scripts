@@ -29,6 +29,7 @@ lcd $LCD;
 mkdir -p $RCD;
 cd $RCD;
 mirror --reverse \
+       --no-perms \
        $DRY_RUN \
        $DELETE \
        --verbose"
